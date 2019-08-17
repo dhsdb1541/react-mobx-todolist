@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './App.scss';
 import { Provider } from 'mobx-react';
+import todoStore from './Store/todoStore';
 const store = {
   todoStore: new todoStore()
 };

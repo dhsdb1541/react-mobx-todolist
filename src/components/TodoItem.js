@@ -15,9 +15,7 @@ export default class TodoItem extends Component {
         >
           &times;
         </div>
-        <div className={`todo-text ${checked && 'checked'}`}>
-          <div>{text}</div>
-        </div>
+        <div className={`todo-text ${checked && 'checked'}`}>{text}</div>
         {checked && <div className="check-mark">✓</div>}
       </div>
     );

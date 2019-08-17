@@ -5,7 +5,12 @@ import PhoneInfoList from './PhoneInfoList';
 import TodoListTemplate from './components/TodoListTemplate';
 import Form from './components/Form';
 import TodoItemList from './components/TodoItemList';
-export default class App extends Component {
+import { inject, observer } from 'mobx-react';
+import { observable, action } from 'mobx';
+export default
+@inject('store')
+@observer
+class App extends Component {
   id = 3;
   state = {
     input: '',
