@@ -9,7 +9,6 @@ export default
 class Form extends Component {
   @observable input = '';
 
-  // id = 3;
   @action.bound onChange(e) {
     const { name, value } = e.target;
     console.log('value', value, 'name', name);
@@ -17,10 +16,6 @@ class Form extends Component {
   }
 
   @action onCreate = e => {
-    const {
-      todoStore: { todoStoreInformation, todos }
-    } = this.props.store;
-
     // todos.push({
     //   todo: this.input,
     //   checked: false
@@ -47,14 +42,6 @@ class Form extends Component {
   };
 
   render() {
-    // const { value, onChange, onCreate, onKeyPress } = this.props;
-    // const {
-    //   todoStore: { todos, todoStoreInformation }
-    // } = this.props.store;
-
-    // console.log(todos);
-    // console.log(todoStoreInformation);
-
     return (
       <div className="form">
         <input onChange={this.onChange} onKeyPress={this.onKeyPress} name="input" />

@@ -7,21 +7,16 @@ export default
 class TodoItem extends Component {
   // @action onRemove=
   render() {
-    const { checked, info, store } = this.props;
+    const { info, store } = this.props;
 
     return (
       <div className="todo-item">
-        <div
-          className="remove"
-          onClick={() =>
-            // e.stopPropagation(); //onToggle 방지
-            store.todoStore.onRemove(info._id)
-          }
-        >
+        <div className="remove" onClick={() => store.todoStore.onRemove(info._id)}>
           &times;
         </div>
-        <div className={`todo-text ${checked && 'checked'}`}>{info.todo}</div>
+        <div className={`todo-text `}>{info.todo}</div>
         {/* <span>{info._id}</span> */}
+        {/* ${checked && 'checked'} */}
       </div>
     );
   }

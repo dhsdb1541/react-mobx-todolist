@@ -10,15 +10,12 @@ export default class todoStore {
   @action getTodo = () => {
     Axios.get('http://localhost:9000/todos/alltodos').then(res => {
       console.log(res.data);
-      // console.log('todos', this.todos.push(res.data));
-      // console.log('todos:', this.todos);
-      // console.log(res, this.state.todos[0]._id);
       this.todos = res.data;
     });
   };
 
   @action onRemove = id => {
-    this.todoStoreInformation = this.todoStoreInformation.filter(todo => todo.id !== id);
+    // this.todos = this.todos.filter(todo => todo.id !== id);
     console.log(id);
     Axios.delete('http://localhost:9000/todos/deletetodo', {
       data: {
