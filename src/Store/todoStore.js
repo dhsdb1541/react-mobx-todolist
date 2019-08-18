@@ -1,6 +1,7 @@
 import { observable, action } from 'mobx';
 import Axios from 'axios';
 
+//분리하기 컴포넌트 따로 서버 따로 넣기
 export default class todoStore {
   @observable todos = [];
 
@@ -19,8 +20,13 @@ export default class todoStore {
   @action onRemove = id => {
     this.todoStoreInformation = this.todoStoreInformation.filter(todo => todo.id !== id);
     console.log(id);
-    Axios.delete('http://localhost:9000/todos/alltodos').then(res => {
+    Axios.delete('http://localhost:9000/todos/deletetodo', {
+      data: {
+        _id: id
+      }
+    }).then(res => {
       console.log(res);
+      this.getTodo();
     });
   };
 }

@@ -13,14 +13,11 @@ class Form extends Component {
     const { name, value } = e.target;
     console.log('value', value, 'name', name);
     this.input = e.target.value;
-    const {
-      todoStore: { todos, todoStoreInformation }
-    } = this.props.store;
   }
 
   @action onCreate = e => {
     const {
-      todoStore: { todos, todoStoreInformation }
+      todoStore: { todoStoreInformation }
     } = this.props.store;
 
     todoStoreInformation.push({
@@ -33,6 +30,7 @@ class Form extends Component {
   @action addTodo = () => {
     Axios.post('http://localhost:9000/todos/addtodo', { todo: this.input }).then(res => {
       console.log(res.data);
+      this.props.store.todoStore.getTodo();
     });
   };
   @action onKeyPress = e => {
@@ -53,7 +51,9 @@ class Form extends Component {
     return (
       <div className="form" onSubmit={e => onCreate(e)}>
         <input onChange={this.onChange} onKeyPress={this.onKeyPress} name="input" />
-        <button type="submit" className="create-button" onClick={this.onCreate} />
+        <button type="submit" className="create-button" onClick={this.onCreate}>
+          작성하기
+        </button>
       </div>
     );
   }
