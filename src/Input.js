@@ -30,9 +30,6 @@ export default class Input extends Component {
           {/* <input placeholder="전화번호" onChange={this.handleChange} value={this.state.phone} name="phone" /> */}
           <button type="submit">제출하기</button>
         </form>
-        <div>
-          {this.state.name} {this.state.phone}
-        </div>
       </div>
     );
   }

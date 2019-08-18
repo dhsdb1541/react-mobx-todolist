@@ -7,15 +7,17 @@ import Form from './components/Form';
 import TodoItemList from './components/TodoItemList';
 import { inject, observer } from 'mobx-react';
 import { observable, action } from 'mobx';
+import Axios from 'axios';
 export default
 @inject('store')
 @observer
 class App extends Component {
   id = 3;
   state = {
-    input: '',
-    todos: [{ id: 0, text: '리액트 소개', checked: false }, { id: 1, text: '리액트 소개', checked: true }, { id: 2, text: '리액트 소개', checked: false }]
+    input: ''
+    // todos: [{ id: 0, text: '리액트 소개', checked: false }, { id: 1, text: '리액트 소개', checked: true }, { id: 2, text: '리액트 소개', checked: false }]
   };
+  // @observable input = '';
 
   // id = 2;
   // state = {
@@ -63,51 +65,62 @@ class App extends Component {
   //     todos: this.state.todos.map(info => (id === info.id ? { ...info, ...data } : info))
   //   });
   // };
-  handleChange = e => {
-    this.setState({
-      input: e.target.value
-    });
-  };
+  // @action handleChange = e => {
+  //   this.setState({
+  //     input: e.target.value
+  //   });
+  // };
 
-  handleCreate = e => {
-    const { input, todos } = this.state;
-    this.setState({
-      input: '',
-      todos: todos.concat({
-        id: this.id++,
-        text: input,
-        checked: false
-      })
-    });
-  };
+  // @action handleCreate = e => {
+  //   const { input, todos } = this.state;
+  //   this.setState({
+  //     input: '',
+  //     todos: todos.concat({
+  //       id: this.id++,
+  //       text: input,
+  //       checked: false
+  //     })
+  //   });
+  // };
 
-  handleKeyPress = e => {
-    if (e.key === 'Enter') {
-      this.handleCreate();
-    }
-  };
+  // @action handleKeyPress = e => {
+  //   if (e.key === 'Enter') {
+  //     this.handleCreate();
+  //   }
+  // };
 
-  handleRemove = id => {
-    this.setState({
-      todos: this.state.todos.filter(todo => todo.id !== id)
-    });
-  };
+  // @action handleRemove = id => {
+  //   this.setState({
+  //     todos: this.state.todos.filter(todo => todo.id !== id)
+  //   });
+  // };
 
-  handleToggle = id => {
-    const { todos } = this.state;
-    const index = todos.findIndex(todo => todo.id === id);
-    const selected = todos[index];
+  // @action handleToggle = id => {
+  //   const { todos } = this.state;
+  //   const index = todos.findIndex(todo => todo.id === id);
+  //   const selected = todos[index];
 
-    const nextTodos = [...todos];
+  //   const nextTodos = [...todos];
 
-    nextTodos[index] = {
-      ...selected,
-      checked: !selected.checked
-    };
-    this.setState({
-      todos: nextTodos
-    });
-  };
+  //   nextTodos[index] = {
+  //     ...selected,
+  //     checked: !selected.checked
+  //   };
+  //   this.setState({
+  //     todos: nextTodos
+  //   });
+  // };
+
+  componentDidMount() {
+    // const getTodo = () => {
+    //   Axios.get('http://localhost:9000/todos/alltodos').then(res => {
+    //     console.log(res.data);
+    //     // console.log(res, this.state.todos[0]._id);
+    //   });
+    // };
+
+    this.props.store.todoStore.getTodo();
+  }
   render() {
     const { input, todos } = this.state;
     const { handleChange, handleCreate, handleKeyPress, handleToggle, handleRemove } = this;
@@ -119,9 +132,10 @@ class App extends Component {
         {/* {this.state.information} */}
         {/* <span>{this.state.number}</span> */}
         {/* <button onClick={this.handleIncrease}>+</button> */}
-        <TodoListTemplate form={<Form value={input} onKeyPress={handleKeyPress} onChange={handleChange} onCreate={handleCreate} />}>
-          <TodoItemList todos={todos} onToggle={handleToggle} onRemove={handleRemove} />
+        <TodoListTemplate form={<Form />}>
+          <TodoItemList />
         </TodoListTemplate>
+        <div>{}</div>
       </>
       // <div>
       //   <form>

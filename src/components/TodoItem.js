@@ -1,22 +1,26 @@
 import React, { Component } from 'react';
+import { inject, observer } from 'mobx-react';
 
-export default class TodoItem extends Component {
+export default
+@inject('store')
+@observer
+class TodoItem extends Component {
+  // @action onRemove=
   render() {
-    const { text, checked, id, onToggle, onRemove } = this.props;
+    const { checked, info, store } = this.props;
 
     return (
-      <div className="todo-item" onClick={() => onToggle(id)}>
+      <div className="todo-item">
         <div
           className="remove"
-          onClick={e => {
-            e.stopPropagation(); //onToggle 방지
-            onRemove(id);
-          }}
+          onClick={() =>
+            // e.stopPropagation(); //onToggle 방지
+            store.todoStore.onRemove(info.id)
+          }
         >
           &times;
         </div>
-        <div className={`todo-text ${checked && 'checked'}`}>{text}</div>
-        {checked && <div className="check-mark">✓</div>}
+        <div className={`todo-text ${checked && 'checked'}`}>{info.text}</div>
       </div>
     );
   }
