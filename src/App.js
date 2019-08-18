@@ -12,16 +12,11 @@ export default
 @inject('store')
 @observer
 class App extends Component {
-  id = 3;
-  state = {
-    input: ''
-    // todos: [{ id: 0, text: '리액트 소개', checked: false }, { id: 1, text: '리액트 소개', checked: true }, { id: 2, text: '리액트 소개', checked: false }]
-  };
-  // @observable input = '';
-
-  // id = 2;
   // state = {
-  //   number: 0,
+  //   input: ''
+  //   // todos: [{ id: 0, text: '리액트 소개', checked: false }, { id: 1, text: '리액트 소개', checked: true }, { id: 2, text: '리액트 소개', checked: false }]
+  // };
+  // @observable input = '';
 
   //   todos: [
   //     {
@@ -112,16 +107,10 @@ class App extends Component {
   // };
 
   componentDidMount() {
-    // const getTodo = () => {
-    //   Axios.get('http://localhost:9000/todos/alltodos').then(res => {
-    //     console.log(res.data);
-    //     // console.log(res, this.state.todos[0]._id);
-    //   });
-    // };
-    // this.props.store.todoStore.getTodo();
+    this.props.store.todoStore.getTodo();
   }
   render() {
-    const { input, todos } = this.state;
+    // const { todos } = this.state;
     const { handleChange, handleCreate, handleKeyPress, handleToggle, handleRemove } = this;
     return (
       <>
@@ -134,7 +123,6 @@ class App extends Component {
         <TodoListTemplate form={<Form />}>
           <TodoItemList />
         </TodoListTemplate>
-        <div>{}</div>
       </>
       // <div>
       //   <form>

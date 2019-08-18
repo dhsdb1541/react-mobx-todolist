@@ -21,7 +21,7 @@ class TodoItem extends Component {
           &times;
         </div>
         <div className={`todo-text ${checked && 'checked'}`}>{info.todo}</div>
-        <span>{info._id}</span>
+        {/* <span>{info._id}</span> */}
       </div>
     );
   }
