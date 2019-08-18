@@ -118,8 +118,7 @@ class App extends Component {
     //     // console.log(res, this.state.todos[0]._id);
     //   });
     // };
-
-    this.props.store.todoStore.getTodo();
+    // this.props.store.todoStore.getTodo();
   }
   render() {
     const { input, todos } = this.state;

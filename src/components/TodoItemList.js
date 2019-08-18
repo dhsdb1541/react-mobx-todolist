@@ -11,10 +11,9 @@ class TodoItemList extends Component {
     todoStore.getTodo();
   }
   render() {
-    const { todos, onToggle, onRemove } = this.props;
-
     const { todoStore } = this.props.store;
-    const todoList = todoStore.todoStoreInformation.map((todo, i) => <TodoItem info={todo} key={i} />);
+    // const todoList = todoStore.todoStoreInformation.map((todo, i) => <TodoItem info={todo} key={i} />);
+    const todoList = todoStore.todos.map((todo, i) => <TodoItem info={todo} key={i} />);
     return <div>{todoList}</div>;
   }
 }

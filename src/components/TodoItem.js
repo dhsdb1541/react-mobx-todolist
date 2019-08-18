@@ -15,12 +15,13 @@ class TodoItem extends Component {
           className="remove"
           onClick={() =>
             // e.stopPropagation(); //onToggle 방지
-            store.todoStore.onRemove(info.id)
+            store.todoStore.onRemove(info._id)
           }
         >
           &times;
         </div>
-        <div className={`todo-text ${checked && 'checked'}`}>{info.text}</div>
+        <div className={`todo-text ${checked && 'checked'}`}>{info.todo}</div>
+        <span>{info._id}</span>
       </div>
     );
   }

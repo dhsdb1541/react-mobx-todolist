@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { observable, action } from 'mobx';
 import { inject, observer } from 'mobx-react';
+import Axios from 'axios';
 
 export default
 @inject('store')
@@ -16,19 +17,24 @@ class Form extends Component {
       todoStore: { todos, todoStoreInformation }
     } = this.props.store;
   }
+
   @action onCreate = e => {
     const {
       todoStore: { todos, todoStoreInformation }
     } = this.props.store;
 
     todoStoreInformation.push({
-      id: this.id++,
-      text: this.input,
+      todo: this.input,
       checked: false
     });
+    this.addTodo();
     console.log(todoStoreInformation, 1);
   };
-
+  @action addTodo = () => {
+    Axios.post('http://localhost:9000/todos/addtodo', { todo: this.input }).then(res => {
+      console.log(res.data);
+    });
+  };
   @action onKeyPress = e => {
     if (e.key === 'Enter') {
       this.onCreate();
